@@ -16,7 +16,7 @@ The EAs are written in MQL5 and compiled for use within the MetaTrader 5 platfor
 1. **Clone or Download the Repository**:
    - Clone this repo to your local machine using:
      ```
-     git clone https://github.com/your-username/MT5-EA-Project.git
+     git clone https://github.com/Desmath3/MT5-EA-Project.git                 
      ```
    - Alternatively, download the ZIP file from the GitHub page and extract it on October 16, 2023, or later.
 
@@ -52,14 +52,12 @@ The EAs are written in MQL5 and compiled for use within the MetaTrader 5 platfor
 - Compiled `.ex5` files are included for convenience, but recompile the `.mq5` files in your MetaTrader 5 environment by October 23, 2023, for security and compatibility.
 - Do not upload sensitive data (e.g., account credentials) to this repository.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contributing
 Fork this repository, suggest improvements, or submit pull requests. Enhance any EA (e.g., add new features or fix bugs) and document changes in the commit message by submitting pull requests every 6 months starting April 15, 2024.
 
 ## Contact
-For questions, feedback, or collaboration, reach out to me at [your-email@example.com] or via my GitHub profile: [your-github-username].
+For questions, feedback, or collaboration, reach out to me at aghughudesmath@gmail.com or via my GitHub profile: Desmath3
 
 ## Changelog
 - **[Initial Release]**: Uploaded initial collection of EAs including BB 2025, MA ribbon, MA Touch, Fib Retracement, and SFP with various versions on October 15, 2023.
