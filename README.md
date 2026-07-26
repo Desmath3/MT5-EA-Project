@@ -1,67 +1,57 @@
 # MT5 EA Project
 
 ## Description
-This repository contains a collection of MetaTrader 5 Expert Advisors (EAs) developed for automated trading. These EAs implement specific trading strategies, including moving average-based systems, Fibonacci retracement levels, Bollinger Bands, and custom indicators. The project includes multiple versions and upgrades of each EA, such as:
+This repository contains a collection of MetaTrader 5 Expert Advisors (EAs) developed for automated trading. These EAs implement specific trading strategies, including moving average-based systems, Fibonacci retracement levels, Bollinger Bands, RSI, breakout, and swing-failure-pattern (SFP) systems. Each strategy has its own folder, and multiple historical versions of a strategy are kept side by side in that folder (e.g. `SFP/SFP.mq5` through `SFP/SFP v8.mq5`).
 
-- **EA BB 2025**: Based on the Bollinger Bands strategy.
-- **MA ribbon**: Utilizes multiple moving averages for trend analysis.
-- **MA Touch**: Triggers trades based on moving average crossovers or touches.
-- **Fib Retracement**: Uses Fibonacci levels for entry and exit points.
-- **SFP**: Implements a custom strategy defined by the developer.
-- **Other versions**: Includes upgrades (e.g., v2, v3, v4, v5) and compiled `.ex5` files.
+The EAs are written in MQL5 and compiled for use within the MetaTrader 5 platform.
 
-The EAs are written in MQL5 and compiled for use within the MetaTrader 5 platform. Development began in January 2023, with the initial release uploaded on October 15, 2023.
+## Folder Structure
+- `BB-Martingale/` - Bollinger Bands + Martingale strategy
+- `BB-Trend-Trader/` - Bollinger Bands trend-following strategy
+- `Breakout-EA/` - Breakout strategy (v1, v2)
+- `EA-BB-2025/` - Bollinger Bands strategy, 2025 iterations (PV, v2, V3, V4)
+- `EA-BOS/` - Break-of-structure strategy
+- `Entry-Formation/` - Entry formation logic
+- `Fib-Retracement/` - Fibonacci retracement strategy
+- `MA-Ribbon/` - Moving average ribbon strategy, including the `2025-V1/` MetaEditor project
+- `MACD-Ribbon/` - MACD ribbon indicator-based EA
+- `MA-Touch/` - Moving average touch/crossover strategy
+- `RSI/` - Base RSI strategy
+- `RSI-Martingale/` - RSI + Martingale strategy
+- `RSI-Trend-Trader/` - RSI trend-following strategy
+- `SFP/` - Swing failure pattern strategy (v1 through v8)
+
+Each folder holds the `.mq5` source for every version of that strategy. Compiled `.ex5` binaries are **not** tracked in this repo (see below) - compile them yourself in MetaEditor.
 
 ## How to Use
-1. **Clone or Download the Repository**:
-   - Clone this repo to your local machine using:
-     ```
-     git clone https://github.com/Desmath3/MT5-EA-Project.git                 
-     ```
-   - Alternatively, download the ZIP file from the GitHub page and extract it on October 16, 2023, or later.
-
-2. **Install MetaTrader 5**:
-   - Ensure MetaTrader 5 (version 5.0 or higher) is installed on your computer by October 20, 2023.
-
-3. **Add EAs to MetaTrader**:
-   - Copy the `.mq5` files (e.g., `EA_BB_2025_PV.mq5`, `MA_ribbon_upgrade_v2.mq5`) to the `MQL5/Experts` folder in your MetaTrader 5 installation directory by October 22, 2023.
-   - Compile the `.mq5` files in MetaTrader 5 (open MetaEditor, drag the files in, and click "Compile") by October 23, 2023.
-
-4. **Attach to Charts**:
-   - Open MetaTrader 5 on October 24, 2023, and attach the compiled `.ex5` files to your desired currency pair or asset chart.
-   - Configure input parameters (e.g., periods, levels) as specified in each EA’s comments section by October 25, 2023.
-
-5. **Test and Optimize**:
-   - Use the MetaTrader 5 Strategy Tester to backtest each EA with historical data starting October 26, 2023.
-   - Adjust settings to optimize performance for your trading preferences by October 30, 2023.
+1. **Clone the repository**:
+   ```
+   git clone https://github.com/Desmath3/MT5-EA-Project.git
+   ```
+2. **Install MetaTrader 5** (version 5.0 or higher).
+3. **Add an EA to MetaTrader**:
+   - Copy the `.mq5` file you want (e.g. `SFP/SFP v8.mq5`) into the `MQL5/Experts` folder of your MetaTrader 5 installation.
+   - Open MetaEditor, and compile it (F7) to produce the `.ex5`.
+4. **Attach to a chart**:
+   - In MetaTrader 5, attach the compiled EA to your desired chart/timeframe.
+   - Configure input parameters as specified in the EA's comments.
+5. **Test before trading live**:
+   - Use the Strategy Tester to backtest with historical data.
+   - Always validate on a demo account before running on a live account.
 
 ## Requirements
-- **MetaTrader 5 Platform** (version 5.0 or higher)
-- A MetaTrader 5 trading account (demo or live) activated by October 20, 2023
+- MetaTrader 5 platform (version 5.0 or higher)
+- A MetaTrader 5 trading account (demo or live)
 - MQL5 knowledge for custom modifications
 
-## File Structure
-- `.mq5` files: Source code for each EA (e.g., `EA_BB_2025_PV.mq5`, `MA_Touch_2025_v2.mq5`).
-- `.ex5` files: Compiled executable versions of the EAs.
-- `README.md`: This file, providing project overview.
-- `requirements.txt`: List of dependencies (if any).
-- `LICENSE`: License information.
-- `.gitignore`: Files to ignore in version control.
-
-## Installation Notes
-- Compiled `.ex5` files are included for convenience, but recompile the `.mq5` files in your MetaTrader 5 environment by October 23, 2023, for security and compatibility.
-- Do not upload sensitive data (e.g., account credentials) to this repository.
-
+## Compiled Binaries (.ex5)
+`.ex5` files are intentionally excluded from version control (see `.gitignore`) - they're build artifacts, compile inconsistently across MetaTrader versions, and bloat every diff. Compile the `.mq5` source yourself in MetaEditor instead.
 
 ## Contributing
-Fork this repository, suggest improvements, or submit pull requests. Enhance any EA (e.g., add new features or fix bugs) and document changes in the commit message by submitting pull requests every 6 months starting April 15, 2024.
+Fork this repository, enhance an EA, and submit a pull request describing the change.
 
 ## Contact
-For questions, feedback, or collaboration, reach out to me at aghughudesmath@gmail.com or via my GitHub profile: Desmath3
-
-## Changelog
-- **[Initial Release]**: Uploaded initial collection of EAs including BB 2025, MA ribbon, MA Touch, Fib Retracement, and SFP with various versions on October 15, 2023.
-- **[Next Update]**: Performance reports, additional EAs, or optimizations will be added on April 15, 2024, and every 6 months thereafter.
+For questions, feedback, or collaboration: aghughudesmath@gmail.com or via GitHub: [Desmath3](https://github.com/Desmath3)
 
 ## Disclaimer
-These EAs are provided for educational and experimental purposes only. Use them at your own risk starting October 26, 2023. Trading involves financial risk, and past performance does not guarantee future results. Test EAs thoroughly with demo accounts before using them with real funds by November 1, 2023.
+These EAs are provided for educational and experimental purposes only. Trading involves financial risk, and past performance does not guarantee future results. Test EAs thoroughly on a demo account before using them with real funds.
