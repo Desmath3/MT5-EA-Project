@@ -6,7 +6,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/Desmath3/MT5-EA-Project)
 ![Repo Size](https://img.shields.io/github/repo-size/Desmath3/MT5-EA-Project)
 
-A private collection of MetaTrader 5 Expert Advisors (EAs) and custom indicators for automated trading - Bollinger Bands, RSI, moving-average ribbon, breakout/range, SFP (swing failure pattern), VWAP, and the "Ighodalo" gold/CFD strategy family, plus strategies co-developed with named collaborators.
+A private collection of MetaTrader 5 Expert Advisors (EAs) for automated trading - Bollinger Bands, RSI, moving-average ribbon, breakout/range, SFP (swing failure pattern), VWAP, and the "Ighodalo" gold/CFD strategy family, plus strategies co-developed with named collaborators.
 
 ## Table of Contents
 - [Description](#description)
@@ -23,11 +23,12 @@ A private collection of MetaTrader 5 Expert Advisors (EAs) and custom indicators
 Every strategy lives in its own top-level folder holding the `.mq5`/`.mqh` source for every version of that strategy - multiple historical versions are kept side by side rather than deleted (e.g. `SFP/SFP.mq5` through `SFP/SFP v8.mq5`). Compiled `.ex5` binaries are intentionally not tracked (see [below](#compiled-binaries-ex5-and-logs)).
 
 ## Repo Layout
-A few folders are split into version subfolders where the underlying MQL5 project kept them as separate MetaEditor projects with their own `.mqh` helper modules: `MA-Ribbon/2025-V1/`, `VWAP-Flip-Bot/V1/` and `/V2/`. `Indicators/` holds custom indicators rather than EAs.
+A few folders are split into version subfolders where the underlying MQL5 project kept them as separate MetaEditor projects with their own `.mqh` helper modules: `MA-Ribbon/2025-V1/`, `VWAP-Flip-Bot/V1/` and `/V2/`. This repo is Expert Advisors only - no indicators.
 
 Not everything from the source library made it in:
 - **Excluded as third-party**: `BoBiXAU Pro`, `HOPE EA (MT5)`, and `NASDAQ GHOST ROBOT` existed only as compiled `.ex5` binaries with no source - almost certainly purchased/downloaded rather than authored here.
 - **No source available**: `Desmond Range Breakout` also only exists as a compiled `.ex5`, so there was nothing to add for it.
+- **Excluded by design**: custom indicators (previously `Indicators/Belema` and `Indicators/Ighodalo-SuperTrend-Band`) - this repo is scoped to Expert Advisors only.
 - **Not migrated (for now)**: backtest/optimization results (`.set`, `.png`, `.html`, `.xml`, `.zip` reports) - pure test artifacts, not source code.
 
 ## Strategies
@@ -128,12 +129,6 @@ Not everything from the source library made it in:
 | `Power-Pivot/` | Pivot-point-based strategy |
 | `News-Identifier-Mt5/` | News event identifier utility EA |
 | `Saro-Trades/` | Saro Trades strategy family (V2 through V7, incl. modular V6/V7 builds) |
-
-### Indicators
-| Folder | Description |
-|---|---|
-| `Indicators/Belema/` | Custom Belema indicator |
-| `Indicators/Ighodalo-SuperTrend-Band/` | Custom SuperTrend band indicator |
 
 ## How to Use
 1. **Clone the repository**:
