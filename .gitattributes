@@ -1,0 +1,17 @@
+# Auto-detect text files and normalize line endings to LF in the repo
+* text=auto eol=lf
+
+# MQL5 source is text
+*.mq5 text
+*.mqh text
+*.mqproj text
+*.txt text
+*.md text
+
+# Windows-only compile scripts keep CRLF since they're run via PowerShell on Windows
+*.ps1 text eol=crlf
+
+# Compiled binaries and archives (shouldn't be tracked, but just in case)
+*.ex5 binary
+*.zip binary
+*.png binary
