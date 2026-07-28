@@ -1,0 +1,5 @@
+# Compiled MQL5 binaries - build these from source in MetaEditor
+*.ex5
+
+# MetaEditor/MetaTrader local project state
+*.mqproj.user
