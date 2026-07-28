@@ -3,3 +3,6 @@
 
 # MetaEditor/MetaTrader local project state
 *.mqproj.user
+
+# Compile/build logs
+*.log
