@@ -85,15 +85,7 @@ int OnInit() {
    
    // Remove grid lines from the chart
    ChartSetInteger(ChartID(), CHART_SHOW_GRID, false);
-   
-   // Expiration date: July 17th, 2025 23:59:59 GMT
-   datetime ExpirationDate = StringToTime("2025.08.17 23:59:59");
-   if(TimeCurrent() > ExpirationDate)
-   {
-      Print("EA expired. Trading disabled, please send an email to @ighodaloxauusd@gmail.com or contact @__ighodalo on X(twitter");
-      return(INIT_FAILED);
-   }
-   
+
    return INIT_SUCCEEDED;
 }
 
@@ -102,14 +94,6 @@ int OnInit() {
 //+------------------------------------------------------------------+
 void OnTick() {
 
-   // Expiration date: July 17th, 2025 23:59:59 GMT
-   datetime ExpirationDate = StringToTime("2025.08.17 23:59:59");
-   if(TimeCurrent() > ExpirationDate)
-   {
-      Print("EA expired. Trading disabled, please send an email to @ighodaloxauusd@gmail.com or contact @__ighodalo on X(twitter");
-      return;
-   }
-   
    datetime currentBarTime = iTime(_Symbol, _Period, 0);
    if (currentBarTime != LastBarTime) {
       UpdateSwingLevels();
