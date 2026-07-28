@@ -23,7 +23,9 @@ A private collection of MetaTrader 5 Expert Advisors (EAs) for automated trading
 Every strategy lives in its own top-level folder holding the `.mq5`/`.mqh` source for every version of that strategy - multiple historical versions are kept side by side rather than deleted (e.g. `SFP/SFP.mq5` through `SFP/SFP v8.mq5`). Compiled `.ex5` binaries are intentionally not tracked (see [below](#compiled-binaries-ex5-and-logs)).
 
 ## Repo Layout
-A few folders are split into version subfolders where the underlying MQL5 project kept them as separate MetaEditor projects with their own `.mqh` helper modules: `MA-Ribbon/2025-V1/`, `VWAP-Flip-Bot/V1/` and `/V2/`. This repo is Expert Advisors only - no indicators.
+A few folders are split into version subfolders where the underlying MQL5 project kept them as separate MetaEditor projects with their own `.mqh` helper modules, or where a hybrid/fork variant is worth keeping visually separate from the main lineage: `MA-Ribbon/2025-V1/`, `VWAP-Flip-Bot/V1/` and `/V2/`, `Limitless-EA-BB/Continuation/` and `/Hybrid/`, `Consolidation-Range-ADX/Hybrid/`, `Belema-SFP/Alex-DIAD-Branch/`. This repo is Expert Advisors only - no indicators.
+
+**Every folder has its own `README.md`** explaining what each file in it is and how it differs from its neighbors - since many folders hold several versions or forks of the same strategy, start there before opening a `.mq5` file cold.
 
 Not everything from the source library made it in:
 - **Excluded as third-party**: `BoBiXAU Pro`, `HOPE EA (MT5)`, and `NASDAQ GHOST ROBOT` existed only as compiled `.ex5` binaries with no source - almost certainly purchased/downloaded rather than authored here.
@@ -31,21 +33,35 @@ Not everything from the source library made it in:
 - **Excluded by design**: custom indicators (previously `Indicators/Belema` and `Indicators/Ighodalo-SuperTrend-Band`) - this repo is scoped to Expert Advisors only.
 - **Not migrated (for now)**: backtest/optimization results (`.set`, `.png`, `.html`, `.xml`, `.zip` reports) - pure test artifacts, not source code.
 
+### A note on consolidation
+This repo previously had 52 top-level folders. Several of those turned out - on
+actually reading the code, not just the names - to be the exact same
+evolving codebase copied under different names over time (confirmed via
+`diff`, not guessed from filenames). Those were merged into single folders
+with a version-history table in their README:
+
+- **`Limitless-EA-BB/`** absorbs what used to be `EA-BB-2025`, `Ighodalo-EA-BB-2025`, `Ighodalo-EA-BB`, `Limitless-EA-BB-2025`, and the `Alex-DIAD-Limitless-EA-BB*` hybrids - all the same `BB_ReversalEA.mq5` lineage from 2021 through v4.36.
+- **`Consolidation-Range-ADX/`** absorbs what used to be `Ebuka`, `Ebuka-EA`, `Ebuka-EA-with-plots`, `Ebuka-Range-Breakout-Hedge`, `Ighodalo-Range-Breakout-with-plots(-reversed)`, `Ighodalo-Range-Breakouts-without-plot`, and the `Alex-DIAD-Ebuka-Range-Breakout-Hedge` hybrid.
+- **`Belema-SFP/`** absorbs what used to be `Alex-DIAD` and `Alex-DIAD-Belema-SFP` (a divergent v2.x branch of the same SFP strategy).
+- **`BB-Trend-Trader/`** absorbs `Ighodalo-Trendtrader` (confirmed via diff to be the same `CBBReversalEA` class with a MACD filter added).
+- **`Ighodalo-Gold-MRA/`** absorbs `Ighodalo-Gold-MRAC` and `MACD-Ribbon` (same "Breakout EA v2 MACD_MA" base with small variations).
+
+Other close relationships exist (e.g. `RSI` / `RSI-Trend-Trader`, `Power-Pivot` / `News-Identifier-Mt5`, `Ighodalo-Gold-BnR` / `Ighodalo-Gold-BnR-Kenton-Royal`) but weren't folded together, usually because one side is a licensed/expiring distribution copy or the divergence is large enough that merging would hide more than it clarifies - each is cross-referenced in the relevant README instead.
+
 ## Strategies
 
 ### Bollinger Bands
 | Folder | Description |
 |---|---|
 | `BB-Martingale/` | Bollinger Bands + Martingale sizing |
-| `BB-Trend-Trader/` | Bollinger Bands trend-following |
-| `EA-BB-2025/` | Bollinger Bands, 2025 iterations (PV, v2, V3, V4) |
+| `BB-Trend-Trader/` | Bollinger Bands trend-following, incl. the MACD-filter variant |
+| `Limitless-EA-BB/` | The "BB Reversal" mega-lineage (2021-2025), incl. `Continuation/` and `Hybrid/` variants |
 
 ### Moving Average / MACD
 | Folder | Description |
 |---|---|
 | `MA-Ribbon/` | Moving-average ribbon trend system, incl. `2025-V1/` project |
 | `MA-Touch/` | Moving-average touch/crossover triggers |
-| `MACD-Ribbon/` | MACD ribbon indicator-based EA |
 | `MACDBB/` | MACD + Bollinger Bands combination |
 
 ### RSI
@@ -59,7 +75,8 @@ Not everything from the source library made it in:
 | Folder | Description |
 |---|---|
 | `SFP/` | Core SFP strategy (v1 through v8) |
-| `Belema-SFP/` | Belema variant of SFP (through V14) |
+| `Belema-SFP/` | Belema's SFP strategy (through V14), incl. the `Alex-DIAD-Branch/` fork |
+| `Ighodalo-SFP/` | Ighodalo's own separate SFP implementation |
 
 ### Breakout / Range / Structure
 | Folder | Description |
@@ -68,67 +85,36 @@ Not everything from the source library made it in:
 | `EA-BOS/` | Break-of-structure strategy |
 | `Fib-Retracement/` | Fibonacci retracement entries/exits |
 | `Entry-Formation/` | Entry formation logic |
-| `Ebuka-Range-Breakout-Hedge/` | Range breakout with hedging |
-
-### Alex DIAD Collaborations
-| Folder | Description |
-|---|---|
-| `Alex-DIAD/` | Base Alex DIAD strategy |
-| `Alex-DIAD-Belema-SFP/` | Alex DIAD combined with Belema SFP |
-| `Alex-DIAD-Ebuka-Range-Breakout-Hedge/` | Alex DIAD combined with Ebuka's range breakout/hedge |
-| `Alex-DIAD-Limitless-EA-BB/` | Alex DIAD combined with Limitless EA BB |
-| `Alex-DIAD-Limitless-EA-BB-Continuation/` | Continuation variant of the above |
-
-### Ebuka Collaborations
-| Folder | Description |
-|---|---|
-| `Ebuka/` | Base Ebuka strategy (v2) |
-| `Ebuka-EA/` | Ebuka EA variant |
-| `Ebuka-EA-with-plots/` | Same, with chart plotting added |
-
-### Limitless EA BB
-| Folder | Description |
-|---|---|
-| `Limitless-EA-BB/` | Core Limitless BB strategy (V2 through V8) |
-| `Limitless-EA-BB-2025/` | 2025 iteration |
-| `Limitless-EA-BB-Continuation/` | Continuation variant (V1.0) |
+| `Consolidation-Range-ADX/` | The ADX-gated consolidation-range/breakout mega-lineage (Ebuka → Ighodalo), incl. `Hybrid/` |
 
 ### Ighodalo Gold / CFD Family
 | Folder | Description |
 |---|---|
 | `Ighodalo-Gold-BBMA/` | Bollinger Bands + Moving Average combo |
 | `Ighodalo-Gold-BnR/` | Break and retest |
-| `Ighodalo-Gold-BnR-Kenton-Royal/` | Break and retest, Kenton Royal variant |
+| `Ighodalo-Gold-BnR-Kenton-Royal/` | Break and retest, licensed/expiring build |
 | `Ighodalo-Gold-CRT/` | Candle range theory strategy |
-| `Ighodalo-Gold-MRA/` | MRA strategy |
-| `Ighodalo-Gold-MRAC/` | MRAC variant |
-| `Ighodalo-Gold-Milker/` | Core "Milker" strategy (V2 through V8) |
-| `Ighodalo-Gold-Turning-Points/` | DCA + scale-in turning-points system (V2, V3) |
+| `Ighodalo-Gold-MRA/` | MA-ribbon + MACD breakout family (incl. former MRAC/MACD-Ribbon) |
+| `Ighodalo-Gold-Milker/` | "Milker" strategy (V2 through V8), descended from BB-Martingale |
+| `Ighodalo-Gold-Turning-Points/` | DCA + scale-in turning-points system (base, V2, V3) |
 
 ### Ighodalo Other Strategies
 | Folder | Description |
 |---|---|
-| `Ighodalo-EA-BB/` | Bollinger Bands variant (V3) |
-| `Ighodalo-EA-BB-2025/` | 2025 iteration (v2, base) |
 | `Ighodalo-Hedger/` | Hedging strategy |
-| `Ighodalo-Hedger-Optimized/` | Optimized hedger (v2, base) |
-| `Ighodalo-Orb/` | Opening range breakout (v2, v3) |
+| `Ighodalo-Hedger-Optimized/` | Optimized hedger (v1.21, v2) |
+| `Ighodalo-Orb/` | Opening range breakout (base, v2, v3) |
 | `Ighodalo-Po3/` | Power of Three strategy |
-| `Ighodalo-Range-Breakout-with-plots/` | Range breakout, with chart plots |
-| `Ighodalo-Range-Breakout-with-plots-reversed/` | Reversed-logic variant |
-| `Ighodalo-Range-Breakouts-without-plot/` | Range breakout, no plotting |
-| `Ighodalo-SFP/` | Ighodalo's own SFP variant (V8) |
-| `Ighodalo-SuperTrend-Reversal/` | SuperTrend reversal strategy |
-| `Ighodalo-Trendtrader/` | General trend-following EA |
+| `Ighodalo-SuperTrend-Reversal/` | Two SuperTrend reversal implementations, one forked from Limitless-EA-BB |
 
 ### VWAP and Misc
 | Folder | Description |
 |---|---|
-| `VWAP-Flip-Bot/` | VWAP flip/swing strategy (V1, V2, incl. news filter module) |
-| `Po3/` | Power of Three strategy |
+| `VWAP-Flip-Bot/` | VWAP flip/swing strategy (V1, V2, incl. Swing Bot variant) |
+| `Po3/` | Power of Three strategy (separate implementation from `Ighodalo-Po3`) |
 | `Power-Pivot/` | Pivot-point-based strategy |
-| `News-Identifier-Mt5/` | News event identifier utility EA |
-| `Saro-Trades/` | Saro Trades strategy family (V2 through V7, incl. modular V6/V7 builds) |
+| `News-Identifier-Mt5/` | Despite the name, closely related to Power-Pivot - see its README |
+| `Saro-Trades/` | Saro Trades strategy family (V1 through V7, incl. modular V6/V7 builds) |
 
 ## How to Use
 1. **Clone the repository**:
